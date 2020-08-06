@@ -1,8 +1,20 @@
 import 'package:flutter/material.dart';
+import 'HomeMain.dart';
+import 'OfferMain.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
 
   static final route = "/home";
+
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+
+  PageController _myController = PageController(
+    initialPage: 0
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -10,8 +22,12 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text("Home"),
       ),
-      body: Center(
-        child: Text("Home screen")
+      body: PageView(
+        controller: _myController,
+        children: <Widget>[
+          HomeMain(),
+          OfferMain()
+        ],
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
@@ -38,8 +54,14 @@ class HomeScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             mainAxisSize: MainAxisSize.max,
             children: <Widget>[
-              IconButton(icon: Icon(Icons.person_pin, size: 30), onPressed: () {}),
-              IconButton(icon: Icon(Icons.local_offer, size: 30), onPressed: () {})
+              IconButton(
+                icon: Icon(Icons.person_pin, size: 30), 
+                onPressed: () => _myController.animateToPage(0, duration: Duration(seconds: 1), curve: Curves.ease)
+              ),
+              IconButton(
+                icon: Icon(Icons.local_offer, size: 30), 
+                onPressed: () => _myController.animateToPage(1, duration: Duration(seconds: 1), curve: Curves.ease)
+              )
             ],
           ),
         )
