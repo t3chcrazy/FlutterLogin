@@ -41,7 +41,6 @@ class _LoginScreenState extends State<LoginScreen> {
   void loginListener() {
     if (notifier.isLoggedIn && notifier.status == LoginStatus.LOGIN_SUCCESSFULL) {
       print("There is a change in notifier state"+notifier.isLoggedIn.toString()+notifier.status.toString());
-      Navigator.pushNamed(context, "/home");
     }
   }
 
@@ -92,7 +91,7 @@ class _LoginScreenState extends State<LoginScreen> {
               RaisedButton(
                 child: Consumer<LoginNotifier>(
                   builder: (context, value, child) => 
-                  value.status == LoginStatus.LOGIN_LOADING? CircularProgressIndicator(): Text("Login"),
+                  value.status == LoginStatus.LOGIN_LOADING? FittedBox(child: CircularProgressIndicator()): Text("Login"),
                 ),
                 onPressed: () {
                   notifier.loginUser(_emailController.text, _passwordController.text);

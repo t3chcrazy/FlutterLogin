@@ -7,7 +7,7 @@ class AuthScreens extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Navigator(
-      initialRoute: "/auth/signup",
+      initialRoute: "/signup",
       onGenerateRoute: (settings) {
         if (settings.name == SignUpScreen.routeName) {
           return MaterialPageRoute(

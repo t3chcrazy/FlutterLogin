@@ -5,7 +5,7 @@ class HomeScreens extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Navigator(
-      initialRoute: "/main/home",
+      initialRoute: "/home",
       onGenerateRoute: (settings) {
         if (settings.name == HomeScreen.route)
           return MaterialPageRoute(
