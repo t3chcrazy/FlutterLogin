@@ -58,10 +58,12 @@ class _LoginScreenState extends State<LoginScreen> {
           child: Column(
             children: <Widget>[
               Text("Welcome ${widget.name}", style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold)),
+              SizedBox(height: 10),
               TextFormField(
                 controller: _emailController,
                 decoration: InputDecoration(
-                  labelText: "Email"
+                  labelText: "Email",
+                  prefixIcon: Icon(Icons.mail),
                 ),
                 validator: (value) {
                   if (value.isEmpty) {
@@ -73,7 +75,8 @@ class _LoginScreenState extends State<LoginScreen> {
               TextFormField(
                 controller: _passwordController,
                 decoration: InputDecoration(
-                  labelText: "Password"
+                  labelText: "Password",
+                  prefixIcon: Icon(Icons.verified_user),
                 ),
                 obscureText: true,
                 validator: (value) {
@@ -95,8 +98,12 @@ class _LoginScreenState extends State<LoginScreen> {
                   notifier.loginUser(_emailController.text, _passwordController.text);
                 },
               ),
+              SizedBox(height: 20),
               Consumer<LoginNotifier>(
-                builder: (context, value, child) => value.status == LoginStatus.LOGIN_UNSUCCESSFULL? Text("Invalid email or password"): Container(),
+                builder: (context, value, child) => 
+                value.status == LoginStatus.LOGIN_UNSUCCESSFULL? 
+                Text("Invalid email or password", style: TextStyle(color: Colors.red, fontSize: 30))
+                : Container(),
               )
             ],
           )
