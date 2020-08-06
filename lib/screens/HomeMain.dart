@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:loginflow/providers/LoginProvider.dart';
+import 'package:provider/provider.dart';
 
 class HomeMain extends StatelessWidget {
   @override
@@ -9,9 +11,13 @@ class HomeMain extends StatelessWidget {
         mainAxisSize: MainAxisSize.max,
         children: <Widget>[
           Text("Home screen"),
-          RaisedButton(
-            child: Text("Logout"),
-            onPressed: () {},
+          Consumer<LoginNotifier>(
+            builder: (context, value, child) {
+              return RaisedButton(
+                child: Text("Logout"),
+                onPressed: () => value.logoutUser(),
+              );
+            },
           )
         ],
       )

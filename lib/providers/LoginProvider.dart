@@ -13,10 +13,6 @@ class LoginNotifier extends ChangeNotifier {
   void loginUser(String email, String password) async {
     setLoginStatus(LoginStatus.LOGIN_LOADING);
     final String url = "https://reqres.in/api/login";
-    print(jsonEncode({
-      "email": email,
-      "password": password
-    }));
     final response = await http.post(
       url, 
       body: jsonEncode({
@@ -25,12 +21,12 @@ class LoginNotifier extends ChangeNotifier {
       }),
       headers: {"Content-Type": "application/json"}
     );
-    print(response.body+" "+response.statusCode.toString());
     if (response.statusCode == 200) {
       Map<String, dynamic> data = jsonDecode(response.body);
       token = data["token"];
       isLoggedIn = true;
       setLoginStatus(LoginStatus.LOGIN_SUCCESSFULL);
+
     }
     else {
       print("Login Unsuccesfull");
@@ -43,6 +39,11 @@ class LoginNotifier extends ChangeNotifier {
 
   void setLoginStatus(LoginStatus newStatus) {
     status = newStatus;
+    notifyListeners();
+  }
+
+  void logoutUser() {
+    isLoggedIn = false;
     notifyListeners();
   }
 
