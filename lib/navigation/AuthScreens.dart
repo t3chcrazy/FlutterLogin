@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../screens/SignUp.dart';
 import '../screens/Login.dart';
+import '../screens/LoginWithBloc.dart';
 import '../arguments/LoginScreen.dart';
 
 class AuthScreens extends StatelessWidget {
@@ -17,7 +18,7 @@ class AuthScreens extends StatelessWidget {
         else if (settings.name == LoginScreen.route) {
           final LoginScreenArguments args = settings.arguments;
           return MaterialPageRoute(
-            builder: (context) => LoginScreen(args.name),
+            builder: (context) => LoginWithBloc(args.name),
           );
         }
         return null;

@@ -17,10 +17,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: ChangeNotifierProvider(
-        create: (context) => LoginNotifier(),
-        child: MainApp(),
-      ),
+      home: MainApp(),
     );
   }
 }
